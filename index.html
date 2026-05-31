@@ -352,6 +352,9 @@
 
     .h-sub strong { color: var(--text); font-weight: 500; }
 
+    .copy-mobile,
+    .mobile-proofline { display: none; }
+
     .h-actions {
       display: flex;
       gap: 12px;
@@ -361,6 +364,9 @@
     .btn-primary,
     .btn-ghost,
     .btn-dark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       font-family: var(--mono);
       font-size: 10px;
       letter-spacing: 0.12em;
@@ -1620,7 +1626,133 @@
     }
 
     @media (max-width: 980px) {
-      .hero-visual, .cursor-glow { display: none; }
+      .cursor-glow { display: none; }
+
+      #hero {
+        min-height: auto;
+        justify-content: flex-start;
+        padding: 0 24px;
+        isolation: isolate;
+      }
+
+      .hero-body {
+        max-width: none;
+        padding-top: 106px;
+        padding-bottom: 30px;
+      }
+
+      .h-eyebrow {
+        margin-bottom: 18px;
+        font-size: 9px;
+        letter-spacing: 0.22em;
+      }
+
+      .h-headline {
+        max-width: 10.8ch;
+        font-size: clamp(42px, 13vw, 64px);
+        line-height: 0.91;
+        letter-spacing: -0.04em;
+      }
+
+      .h-sub-row {
+        max-width: none;
+        margin-top: 26px;
+        gap: 20px;
+      }
+
+      .h-sub {
+        max-width: 38rem;
+        font-size: 15px;
+        line-height: 1.68;
+        color: rgba(216,216,216,0.76);
+      }
+
+      .copy-desktop { display: none; }
+      .copy-mobile { display: inline; }
+
+      .h-actions {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .h-actions .btn-primary,
+      .h-actions .btn-ghost {
+        width: 100%;
+        min-height: 48px;
+        padding: 15px 18px;
+      }
+
+      .mobile-proofline {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        width: 100%;
+        margin-top: 2px;
+        color: rgba(216,216,216,0.62);
+        font-family: var(--mono);
+        font-size: 8px;
+        line-height: 1.5;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      .mobile-proofline::before {
+        content: '';
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 14px rgba(226,255,62,0.58);
+        flex: 0 0 auto;
+      }
+
+      .hero-visual {
+        display: block;
+        top: 310px;
+        right: -120px;
+        width: min(88vw, 390px);
+        max-width: none;
+        opacity: 0.26;
+        z-index: 1;
+        pointer-events: none;
+        filter: drop-shadow(0 30px 72px rgba(0,0,0,0.48));
+      }
+
+      .globe-shell,
+      #particleGlobe {
+        pointer-events: none;
+        cursor: default;
+        touch-action: auto;
+      }
+
+      .globe-chip,
+      .globe-caption { display: none; }
+
+      .globe-orbit { opacity: 0.22; }
+
+      .hero-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 24px;
+        border: 1px solid var(--b);
+        background: rgba(8,8,8,0.28);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+      }
+
+      .hstat {
+        min-height: 92px;
+        padding: 16px 14px;
+        border-right: 1px solid var(--b);
+        border-bottom: 1px solid var(--b);
+      }
+
+      .hstat:nth-child(2n) { border-right: none; }
+      .hstat:nth-last-child(-n + 2) { border-bottom: none; }
+
+      .hstat-n { font-size: clamp(15px, 4.6vw, 20px); }
+      .hstat-l { font-size: 8px; line-height: 1.45; }
     }
 
     @keyframes slideUp {
@@ -1656,7 +1788,7 @@
       .linesep { margin: 0 24px; }
       #hero { padding: 0 24px; }
       .hero-stats { grid-template-columns: 1fr 1fr; }
-      .h-sub-row { flex-direction: column; align-items: flex-start; gap: 28px; }
+      .h-sub-row { flex-direction: column; align-items: flex-start; gap: 20px; }
       .h-actions { flex-wrap: wrap; }
       #about { grid-template-columns: 1fr; gap: 48px; }
       .about-sticky,
@@ -1680,10 +1812,13 @@
     @media (max-width: 580px) {
       .sectors-grid { grid-template-columns: 1fr; }
       .process-grid { grid-template-columns: 1fr; }
-      .hero-stats { grid-template-columns: 1fr; }
-      .hstat { border-right: none; border-bottom: 1px solid var(--b); }
-      .hstat:last-child { border-bottom: none; }
-      .h-headline { font-size: 45px; }
+      .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hstat { border-right: 1px solid var(--b); border-bottom: 1px solid var(--b); }
+      .hstat:nth-child(2n) { border-right: none; }
+      .hstat:nth-last-child(-n + 2) { border-bottom: none; }
+      .h-headline { font-size: clamp(42px, 13.4vw, 52px); }
+      .hero-visual { top: 324px; right: -135px; width: min(94vw, 360px); opacity: 0.22; }
+      .nav-links .nl-cta { padding: 8px 14px; }
       .who-row { grid-template-columns: 1fr; gap: 6px; }
       .partners-lbl { display: none; }
       #toast { left: 24px; right: 24px; bottom: 24px; }
@@ -1729,13 +1864,16 @@
         </h1>
         <div class="h-sub-row">
           <p class="h-sub">
-            KNWLY designs, builds, and scales serious platform infrastructure for <strong>crypto exchanges, trading platforms, casino and sportsbook platforms, fintech products, marketplaces, wallets, dashboards, and operational systems.</strong><br /><br />
-            Not landing pages. Not template builds. Full product, backend, frontend, infrastructure, integrations, and operational tooling for operators with a real commercial model.
+            <span class="copy-desktop">KNWLY designs, builds, and scales serious platform infrastructure for <strong>crypto exchanges, trading platforms, casino and sportsbook platforms, fintech products, marketplaces, wallets, dashboards, and operational systems.</strong><br /><br />
+            Not landing pages. Not template builds. Full product, backend, frontend, infrastructure, integrations, and operational tooling for operators with a real commercial model.</span>
+            <span class="copy-mobile">KNWLY builds complete platforms for serious operators — <strong>crypto exchanges, trading systems, casino platforms, fintech products, wallets, dashboards and admin tooling.</strong><br /><br />
+            Full frontend, backend, infrastructure and integrations built to launch, operate and scale.</span>
           </p>
           <div class="h-actions" aria-label="Hero actions">
             <a href="https://calendly.com/knwly/platform-readiness-call" class="btn-primary" target="_blank" rel="noopener noreferrer">Get in touch</a>
             <a href="#capabilities" class="btn-ghost">View capabilities</a>
           </div>
+          <div class="mobile-proofline">UK · Global · Qualified operators only</div>
         </div>
       </div>
       <div class="hero-stats" aria-label="KNWLY delivery focus">
